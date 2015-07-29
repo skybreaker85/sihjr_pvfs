@@ -27,6 +27,16 @@ public class SIHJR_PVFS_Emitter : MonoBehaviour {
 		_controller.addBody (_body);
 
 		_spawnNext = _startTime;
+
+		//initialSpawn
+		int countTo = 10;
+		Debug.Log ("c: " + ((0 - countTo/2f) / countTo * 2));
+		for (int i = 0; i < countTo; i++) {
+			for (int j = 0; j < countTo; j++) {
+				spawnNewParticle((i - countTo/2f) / countTo, (j - countTo/2f) / countTo);
+				//spawnNewParticle(0f, 0f);
+			}
+		}
 	}
 	
 	// Update is called once per frame
@@ -50,18 +60,8 @@ public class SIHJR_PVFS_Emitter : MonoBehaviour {
 				float randomY = Random.Range (-0.05f, 0.05f);
 				//Debug.Log (" random Pos [x:" + randomX + ",y:" + randomY + "]");
 
+				spawnNewParticle(randomX, randomY);
 
-				GameObject vis = _visualController.SpawnVisual(randomX,randomY);
-				SIHJR_PVFS_Particle par = _controller.SpawnParticle(randomX,randomY);
-				par.id = count;
-				//par.randomInitialVelocity();
-				_visualController.Connect(par, vis);
-
-				//make 10er visible
-				if (count % 10 == 0) vis.GetComponent<SpriteRenderer>().color = Color.red;
-				else vis.GetComponent<SpriteRenderer>().color = Color.blue;
-
-				count++;
 			}
 
 			//set new delay
@@ -69,5 +69,19 @@ public class SIHJR_PVFS_Emitter : MonoBehaviour {
 		} else {
 			_spawnNext -= Time.deltaTime;
 		}
+	}
+
+	private void spawnNewParticle(float x, float y) {
+		GameObject vis = _visualController.SpawnVisual(x,y);
+		SIHJR_PVFS_Particle par = _controller.SpawnParticle(x,y);
+		par.id = count;
+		//par.randomInitialVelocity();
+		_visualController.Connect(par, vis);
+		
+		//make 10er visible
+		if (count % 10 == 0) vis.GetComponent<SpriteRenderer>().color = Color.red;
+		else vis.GetComponent<SpriteRenderer>().color = Color.blue;
+		
+		count++;
 	}
 }

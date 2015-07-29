@@ -47,9 +47,9 @@ public class SIHJR_PVFS_Controller
 		_bodies = new ArrayList ();
 
 		_h = 0.2f;
-		_k = 0.5f;
-		_kNear = 0.7f;
-		_kSpring = 0.2f;
+		_k = 1.5f;
+		_kNear = 1.7f;
+		_kSpring = 1.2f;
 		_q = 0f;
 		_pressureTemp = 0f;
 		_pressureTempNear = 0f;
@@ -149,11 +149,11 @@ public class SIHJR_PVFS_Controller
 
 
 		// add and remove springs, change rest lengths
-		//adjustSprings ();
+		adjustSprings ();
 
 		// modify positions according to springs,
 		//double density relaxation, and collisions
-		//applySpringDisplacements ();
+		applySpringDisplacements ();
 		doubleDensityRelaxation ();
 		resolveCollisions ();
 
@@ -254,9 +254,12 @@ public class SIHJR_PVFS_Controller
 				//TEST CALCULATE IT WITH NORMAL = UP VECTOR
 				relVelocity = p.velocity - Vector2.zero; //TODO: Vector2.zero should be the velocity of thebody computed from previous steps, but for now, no body moves = zero velocity
 				//normalVector = Vector2.up;
-				normalVector = new Vector2 (p.x - body.bounds.center.x, p.y - body.bounds.center.y);
+				normalVector = new Vector2 (body.bounds.center.x - p.x, body.bounds.center.y - p.y);
 				normalVector.Normalize ();
-				normalVelocity = Vector2.Dot (relVelocity, normalVector) * normalVector; //TODO Vector.up should be the normal from the body shape
+
+				//normalVector = normalizedDirectionVector(new Vector2(p.x, p.y), new Vector2(body.bounds.center.x, body.bounds.center.y));
+				
+					normalVelocity = Vector2.Dot (relVelocity, normalVector) * normalVector; //TODO Vector.up should be the normal from the body shape
 				tangentVelocity = relVelocity - normalVelocity;
 				_m_my = 0.1f;
 				impulse = normalVelocity + _m_my * tangentVelocity;	//TODO kurios: + und - sind umgedreht im vgl zum paper
@@ -741,6 +744,7 @@ public class SIHJR_PVFS_Controller
 		}
 		*/
 
+		_springs.Clear ();
 		
 		foreach (SIHJR_PVFS_NeighborPair pair in _neighborPairs) {
 			pi = pair.particle1;
@@ -906,8 +910,8 @@ public class SIHJR_PVFS_Controller
 	private Vector2 normalizedDirectionVector (SIHJR_PVFS_Particle pi, SIHJR_PVFS_Particle pj)
 	{
 		Vector2 temp = new Vector2 ();
-		temp.x = pi.x - pj.x;
-		temp.y = pi.y - pj.y;
+		temp.x = pj.x - pi.x;
+		temp.y = pj.y - pi.y;
 		temp.Normalize ();
 		return temp;
 	}

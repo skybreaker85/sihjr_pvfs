@@ -44,7 +44,7 @@ public class SIHJR_PVFS_Particle {
 		
 		_velocity = Vector2.zero;
 		
-		_densityRest = 1f/16f;
+		_densityRest = 8f;
 
 		_neighbors = new ArrayList ();
 	}
@@ -124,8 +124,8 @@ public class SIHJR_PVFS_Particle {
 	public void displaceVector (Vector2 dVector)
 	{
 		//TODO: maybe its - instead of + dVector (despite written down in algorithm)
-		_x = _x - dVector.x;
-		_y = _y - dVector.y;
+		_x = _x + dVector.x;
+		_y = _y + dVector.y;
 	}
 
 	public void applyGravity (Vector2 _gravity, float deltaTime)
