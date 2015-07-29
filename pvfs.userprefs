@@ -1,0 +1,18 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\SIHJR\PFVS\Scripts\pvfs\SIHJR_PVFS_Controller.cs">
+    <Files>
+      <File FileName="..\..\2D Test 02\2D Test 02\Assets\Scripts\EimerFactory.cs" Line="1" Column="1" />
+      <File FileName="..\..\2D Test 02\2D Test 02\Assets\Scripts\Shader\Metaballs_Multiple.shader" Line="25" Column="24" />
+      <File FileName="..\..\2D Test 02\2D Test 02\Assets\Scripts\ParticleBehaviour.cs" Line="1" Column="1" />
+      <File FileName="..\..\2D Test 02\2D Test 02\Assets\Scripts\GlobalVariablesSingleton.cs" Line="1" Column="1" />
+      <File FileName="..\..\2D Test 02\2D Test 02\Assets\Scripts\BucketBehaviour.cs" Line="111" Column="48" />
+      <File FileName="Assets\SIHJR\PFVS\Shader\Metaballs_Multiple.shader" Line="23" Column="25" />
+      <File FileName="Assets\SIHJR\PFVS\Scripts\pvfs\SIHJR_PVFS_Controller.cs" Line="62" Column="19" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
